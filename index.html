@@ -3,96 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Акции с Павлом Ломакиным</title>
+  <title>Тест на финансовую толерантность к риску</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      background-color: #111;
-      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #fff;
+      color: #000;
+      line-height: 1.6;
     }
-    header {
-      text-align: center;
-      padding: 15px 20px;
+    .question {
+      display: none;
+      margin-bottom: 30px;
     }
-    header img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    header p {
-      font-size: 1.1em;
-      margin-top: 5px;
-      color: #ccc;
-    }
-    .links {
-      text-align: center;
-      padding: 10px 20px;
-    }
-    .links a {
+    .active {
       display: block;
-      margin: 10px auto;
-      padding: 12px 20px;
-      width: 80%;
-      max-width: 500px;
-      background-color: #222;
-      border-radius: 6px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-      transition: background-color 0.3s;
     }
-    .links a:hover {
-      background-color: #333;
+    button {
+      background-color: #f4b400;
+      color: #000;
+      padding: 10px 20px;
+      border: 2px solid #000;
+      cursor: pointer;
+      font-weight: bold;
     }
-    #connect {
-      padding: 25px 20px;
-      background-color: #111;
-      text-align: center;
-      border-top: 1px solid #333;
+    button:hover {
+      background-color: #ffd54f;
     }
-    #connect a {
-      color: #4da3ff;
-      text-decoration: none;
-    }
-    #connect a:hover {
-      text-decoration: underline;
-    }
-    #connect h4 {
-      margin: 10px 0;
-      font-weight: 400;
-      color: #ccc;
+    .result {
+      display: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="https://github.com/PavloLomakin/Pavlo.Lomakin/blob/main/Pavlo.Lomakin.jpg?raw=true" alt="Pavlo Lomakin">
-    <h1>Акции с Павлом Ломакиным</h1>
-  </header>
-  <section class="links">
-    <a href="https://stockanalysis.com/?ref=pavlo" target="_blank">1. Сайт для Анализа Акций</a>
-    <a href="https://www.patreon.com/PavloLomakin" target="_blank">2. Доступ к закрытому Discord-сообществу</a>
-    <a href="https://www.dataroma.com/m/home.php" target="_blank">3. Куда инвестируют Супер-Инвесторы</a>
-    <a href="https://pavlolomakin.github.io/IV-calculator/" target="_blank">4. Калькулятор Внутренней Стоимости</a>
-    <a href="https://www.youtube.com/@PavloLomakin" target="_blank">5. Мой YouTube канал о Инвестициях</a>
-  </section>
+  <h2>Тест на финансовую толерантность к риску</h2>
+  <p>Отвечайте на вопросы по очереди. В конце вы узнаете свой уровень склонности к риску.</p>
 
-  <section id="connect">
-    <h4>Поддержать: • <a href="https://ko-fi.com/pavlo_lomakin" target="_blank">Угостить чашкой кофе</a> •
-      <a href="https://www.patreon.com/PavloLomakin" target="_blank">Patreon</a> •
-      <a href="https://www.paypal.me/pavlomakin?country.x=CA&amp;locale.x=en_US" target="_blank">PayPal</a>
-    </h4>
-    <h4>✉ Сотрудничество и предложения: <a href="mailto:talkostocks@gmail.com">talkostocks@gmail.com</a></h4>
-  </section>
+  <div id="quiz">
+
+  <div class="question active" data-q="1">
+    <p>1. Как бы ваш лучший друг описал вас как человека, склонного к риску?</p>
+    <label><input type="radio" name="q1" value="4"> Азартный игрок</label><br>
+    <label><input type="radio" name="q1" value="3"> Склонен к риску после анализа</label><br>
+    <label><input type="radio" name="q1" value="2"> Осторожный</label><br>
+    <label><input type="radio" name="q1" value="1"> Избегающий риска</label><br>
+  </div>
+
+  <div class="question" data-q="2">
+    <p>2. На телешоу вы можете выбрать одно из следующих:</p>
+    <label><input type="radio" name="q2" value="1">$1,000 наличными</label><br>
+    <label><input type="radio" name="q2" value="2">50% шанс выиграть $5,000</label><br>
+    <label><input type="radio" name="q2" value="3">25% шанс выиграть $10,000</label><br>
+    <label><input type="radio" name="q2" value="4">5% шанс выиграть $100,000</label><br>
+  </div>
+
+  <div class="question" data-q="3">
+    <p>3. Вы накопили на отпуск мечты, но за три недели до поездки потеряли работу. Что вы сделаете?</p>
+    <label><input type="radio" name="q3" value="1"> Отменю отпуск</label><br>
+    <label><input type="radio" name="q3" value="2"> Возьму более скромный отпуск</label><br>
+    <label><input type="radio" name="q3" value="3"> Поеду как планировал — нужно время подумать</label><br>
+    <label><input type="radio" name="q3" value="4"> Продлю отпуск — шанс отдохнуть по‑настоящему</label><br>
+  </div>
+
+  <div class="question" data-q="4">
+    <p>4. Если бы вы неожиданно получили $20,000 для инвестиций, что бы сделали?</p>
+    <label><input type="radio" name="q4" value="1"> Положу на счёт или депозит</label><br>
+    <label><input type="radio" name="q4" value="2"> Куплю надёжные облигации</label><br>
+    <label><input type="radio" name="q4" value="3"> Инвестирую в акции или фонды</label><br>
+  </div>
+
+  <div class="question" data-q="5">
+    <p>5. Насколько вы уверенно чувствуете себя при инвестировании в акции?</p>
+    <label><input type="radio" name="q5" value="1"> Совсем некомфортно</label><br>
+    <label><input type="radio" name="q5" value="2"> Умеренно комфортно</label><br>
+    <label><input type="radio" name="q5" value="3"> Очень комфортно</label><br>
+  </div>
+
+  <div class="question" data-q="6">
+    <p>6. Какое слово первым приходит в голову при слове «риск»?</p>
+    <label><input type="radio" name="q6" value="1"> Потеря</label><br>
+    <label><input type="radio" name="q6" value="2"> Неопределённость</label><br>
+    <label><input type="radio" name="q6" value="3"> Возможность</label><br>
+    <label><input type="radio" name="q6" value="4"> Азарт</label><br>
+  </div>
+
+  <div class="question" data-q="7">
+    <p>7. Эксперты прогнозируют рост цен на золото и недвижимость, но падение облигаций. Ваши активы — облигации. Что вы сделаете?</p>
+    <label><input type="radio" name="q7" value="1"> Оставлю облигации</label><br>
+    <label><input type="radio" name="q7" value="2"> Продам половину и вложу часть в активы</label><br>
+    <label><input type="radio" name="q7" value="3"> Продам всё и куплю активы</label><br>
+    <label><input type="radio" name="q7" value="4"> Продам всё, куплю активы и возьму кредит</label><br>
+  </div>
+
+  <div class="question" data-q="8">
+    <p>8. Какой вариант доходности вы бы предпочли?</p>
+    <label><input type="radio" name="q8" value="1">$200 прибыль / $0 убыток</label><br>
+    <label><input type="radio" name="q8" value="2">$800 прибыль / $200 убыток</label><br>
+    <label><input type="radio" name="q8" value="3">$2,600 прибыль / $800 убыток</label><br>
+    <label><input type="radio" name="q8" value="4">$4,800 прибыль / $2,400 убыток</label><br>
+  </div>
+
+  <div class="question" data-q="9">
+    <p>9. Вам дали $1,000. Что выберете?</p>
+    <label><input type="radio" name="q9" value="1"> Гарантированный выигрыш $500</label><br>
+    <label><input type="radio" name="q9" value="3"> 50% шанс выиграть $1,000</label><br>
+  </div>
+
+  <div class="question" data-q="10">
+    <p>10. Вам дали $2,000. Что выберете?</p>
+    <label><input type="radio" name="q10" value="1"> Гарантированный выигрыш $500</label><br>
+    <label><input type="radio" name="q10" value="3"> 50% шанс потерять $1,000</label><br>
+  </div>
+
+  <div class="question" data-q="11">
+    <p>11. Родственник оставил вам $100,000 с условием инвестировать всё в один вариант. Что выберете?</p>
+    <label><input type="radio" name="q11" value="1"> Сберегательный счёт</label><br>
+    <label><input type="radio" name="q11" value="2"> Фонд акций и облигаций</label><br>
+    <label><input type="radio" name="q11" value="3"> Портфель из 15 акций</label><br>
+    <label><input type="radio" name="q11" value="4"> Товары — золото, серебро, нефть</label><br>
+  </div>
+
+  <div class="question" data-q="12">
+    <p>12. Какое распределение инвестиций вам ближе?</p>
+    <label><input type="radio" name="q12" value="1"> 100% облигации</label><br>
+    <label><input type="radio" name="q12" value="2"> 50% облигации / 50% акции</label><br>
+    <label><input type="radio" name="q12" value="3"> 100% акции</label><br>
+  </div>
+
+  <div class="question" data-q="13">
+    <p>13. Если бы вы инвестировали $20,000, какой максимальный временный убыток вы готовы принять?</p>
+    <label><input type="radio" name="q13" value="1"> $0</label><br>
+    <label><input type="radio" name="q13" value="2"> $3,000</label><br>
+    <label><input type="radio" name="q13" value="3"> $6,000</label><br>
+    <label><input type="radio" name="q13" value="4"> $10,000</label><br>
+  </div>
+
+</div>
+
+
+    <!-- остальные вопросы по аналогии -->
+    <!-- ... -->
+  </div>
+
+  <button id="nextBtn">ДАЛЕЕ</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    const questions = document.querySelectorAll('.question');
+    const nextBtn = document.getElementById('nextBtn');
+    const resultDiv = document.getElementById('result');
+    let current = 0;
+    let score = 0;
+
+    nextBtn.addEventListener('click', () => {
+      const currentQ = questions[current];
+      const selected = currentQ.querySelector('input[type="radio"]:checked');
+      if (!selected) {
+        alert('Выберите вариант ответа.');
+        return;
+      }
+      score += parseInt(selected.value);
+      currentQ.classList.remove('active');
+      current++;
+      if (current < questions.length) {
+        questions[current].classList.add('active');
+      } else {
+        nextBtn.style.display = 'none';
+        let level = '';
+        if (score >= 33) level = 'Высокая толерантность к риску';
+        else if (score >= 29) level = 'Выше среднего';
+        else if (score >= 23) level = 'Средняя';
+        else if (score >= 19) level = 'Ниже среднего';
+        else level = 'Низкая';
+        resultDiv.innerHTML = `Ваш результат: ${score} баллов<br><br><strong>${level}</strong>`;
+        resultDiv.style.display = 'block';
+      }
+    });
+  </script>
 
 </body>
 </html>
