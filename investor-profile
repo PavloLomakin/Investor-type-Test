@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профиль инвестора</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .question {
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #fff;
+    border: 2px solid #000;
+  }
+
+  label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+  }
+
+  input[type="text"] {
+    width: 95%;
+    padding: 10px;
+    border: 2px solid #000;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  button {
+    display: block;
+    margin: 30px auto;
+    padding: 12px 25px;
+    background: #f4b400;
+    border: 2px solid #000;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* Анимация падающих долларов */
+  .dollar {
+    position: fixed;
+    top: -40px;
+    right: 20px;
+    font-size: 32px;
+    animation: fall 1.5s linear forwards;
+    pointer-events: none;
+  }
+
+  @keyframes fall {
+    from { top: -40px; opacity: 1; }
+    to { top: 85vh; opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Профиль инвестора</h1>
+
+<div id="form">
+
+  <!-- Новое поле имени -->
+  <div class="question">
+    <p>Введите ваше Имя и Первую букву фамилии:</p>
+    <input id="username" type="text" placeholder="Иван П">
+  </div>
+
+  <div class="question">
+    <p>1. Какова ваша главная цель инвестирования?</p>
+    <label><input type="radio" name="q1"> Накопление капитала</label>
+    <label><input type="radio" name="q1"> Доход от инвестиций</label>
+    <label><input type="radio" name="q1"> Защита капитала</label>
+    <label><input type="radio" name="q1"> Покупка жилья</label>
+  </div>
+
+  <div class="question">
+    <p>2. Ваш инвестиционный горизонт:</p>
+    <label><input type="radio" name="q2"> &lt; 3 лет</label>
+    <label><input type="radio" name="q2"> 3–7 лет</label>
+    <label><input type="radio" name="q2"> 7–15 лет</label>
+    <label><input type="radio" name="q2"> &gt; 15 лет</label>
+  </div>
+
+  <div class="question">
+    <p>3. Какие активы у вас уже есть?</p>
+    <label><input type="checkbox" name="q3" value="Акции / ETF"> Акции / ETF</label>
+    <label><input type="checkbox" name="q3" value="Облигации"> Облигации</label>
+    <label><input type="checkbox" name="q3" value="Недвижимость"> Недвижимость</label>
+    <label><input type="checkbox" name="q3" value="Криптовалюты"> Криптовалюты</label>
+    <label><input type="checkbox" name="q3" value="Кэш / депозиты"> Кэш / депозиты</label>
+  </div>
+
+  <div class="question">
+    <p>4. Какие счета у вас есть?</p>
+    <label><input type="checkbox" name="q4" value="TFSA"> TFSA</label>
+    <label><input type="checkbox" name="q4" value="RRSP"> RRSP</label>
+    <label><input type="checkbox" name="q4" value="FHSA"> FHSA</label>
+    <label><input type="checkbox" name="q4" value="Taxable"> Налогооблагаемый счёт</label>
+  </div>
+
+  <div class="question">
+    <p>5. Какую максимальную просадку вы готовы принять?</p>
+    <label><input type="radio" name="q5" value="0%"> 0%</label>
+    <label><input type="radio" name="q5" value="10%"> 10%</label>
+    <label><input type="radio" name="q5" value="20%"> 20%</label>
+    <label><input type="radio" name="q5" value="40%"> 40%</label>
+  </div>
+
+  <div class="question">
+    <p>6. Ваш опыт инвестирования:</p>
+    <label><input type="radio" name="q6" value="Новичок"> Новичок</label>
+    <label><input type="radio" name="q6" value="Средний"> Средний</label>
+    <label><input type="radio" name="q6" value="Продвинутый"> Продвинутый</label>
+  </div>
+
+</div>
+
+<button id="finishBtn">Завершить</button>
+
+<script>
+  // Падающие доллары
+  function dropDollar() {
+    const dollar = document.createElement('div');
+    dollar.className = 'dollar';
+    dollar.textContent = '💵';
+    document.body.appendChild(dollar);
+
+    setTimeout(() => {
+      dollar.style.top = '85vh';
+    }, 10);
+  }
+
+  document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('click', dropDollar);
+  });
+
+  // Сохранение имени + профиля
+  document.getElementById('finishBtn').addEventListener('click', () => {
+
+    // --- Имя ---
+    const fullName = document.getElementById('username').value.trim();
+    if (fullName.length > 0) {
+      const parts = fullName.split(" ");
+      const firstName = parts[0];
+      const lastInitial = parts[1] ? parts[1][0] : "";
+      const shortName = lastInitial ? `${firstName} ${lastInitial}.` : firstName;
+
+      localStorage.setItem('userName', shortName);
+    }
+
+    // --- Профиль ---
+    const profile = {
+      goal: document.querySelector('input[name="q1"]:checked')?.value || null,
+      horizon: document.querySelector('input[name="q2"]:checked')?.value || null,
+      assets: Array.from(document.querySelectorAll('input[name="q3"]:checked')).map(i => i.value),
+      accounts: Array.from(document.querySelectorAll('input[name="q4"]:checked')).map(i => i.value),
+      drawdown: document.querySelector('input[name="q5"]:checked')?.value || null,
+      experience: document.querySelector('input[name="q6"]:checked')?.value || null
+    };
+
+    localStorage.setItem('investorProfile', JSON.stringify(profile));
+
+    alert("Анкета завершена!");
+  });
+</script>
+
+</body>
+</html>
