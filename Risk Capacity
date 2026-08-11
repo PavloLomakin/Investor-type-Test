@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Определение Risk Capacity</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    section {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+        margin-top: 15px;
+        display: block;
+    }
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+    }
+    button {
+        width: 100%;
+        padding: 15px;
+        margin-top: 20px;
+        background: #2d6cdf;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #1f4fb5;
+    }
+    #result {
+        margin-top: 20px;
+        padding: 20px;
+        background: #eef3ff;
+        border-left: 5px solid #2d6cdf;
+        border-radius: 8px;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Определение Risk Capacity</h1>
+
+<section id="intro">
+    <p><strong>Risk Capacity</strong> — объективная способность инвестора выдерживать финансовый риск. Методология основана на академических моделях: Kitces Two‑Dimensional Framework, Vanguard Advisor Alpha, Household Finance Studies.</p>
+</section>
+
+<section>
+<form id="riskForm">
+
+    <label>🧮 1. Возраст</label>
+    <select name="q1">
+        <option value="4">До 30 лет</option>
+        <option value="3">30–45</option>
+        <option value="2">45–60</option>
+        <option value="1">60+</option>
+    </select>
+
+    <label>💼 2. Стабильность дохода</label>
+    <select name="q2">
+        <option value="4">Постоянный контракт / госслужба</option>
+        <option value="3">Стабильная работа в частном секторе</option>
+        <option value="2">Переменный доход</option>
+        <option value="1">Высокая нестабильность</option>
+    </select>
+
+    <label>📉 3. Доля обязательных расходов</label>
+    <select name="q3">
+        <option value="4">&lt; 30%</option>
+        <option value="3">30–50%</option>
+        <option value="2">50–70%</option>
+        <option value="1">&gt; 70%</option>
+    </select>
+
+    <label>🛟 4. Финансовая подушка</label>
+    <select name="q4">
+        <option value="4">&gt; 12 месяцев</option>
+        <option value="3">6–12 месяцев</option>
+        <option value="2">3–6 месяцев</option>
+        <option value="1">&lt; 3 месяцев</option>
+    </select>
+
+    <label>📅 5. Инвестиционный горизонт</label>
+    <select name="q5">
+        <option value="4">&gt; 15 лет</option>
+        <option value="3">7–15 лет</option>
+        <option value="2">3–7 лет</option>
+        <option value="1">&lt; 3 лет</option>
+    </select>
+
+    <label>🧾 6. Наличие крупных обязательств</label>
+    <select name="q6">
+        <option value="4">Нет долгов</option>
+        <option value="3">Ипотека &lt; 20% дохода</option>
+        <option value="2">Ипотека 20–40% дохода</option>
+        <option value="1">Высокие долги</option>
+    </select>
+
+    <label>👨‍👩‍👧 7. Количество иждивенцев</label>
+    <select name="q7">
+        <option value="4">0</option>
+        <option value="3">1</option>
+        <option value="2">2</option>
+        <option value="1">3+</option>
+    </select>
+
+    <label>💰 8. Соотношение активов и дохода</label>
+    <select name="q8">
+        <option value="4">Активы &gt; 7 годовых доходов</option>
+        <option value="3">3–7 годовых доходов</option>
+        <option value="2">1–3 годовых дохода</option>
+        <option value="1">&lt; 1 годового дохода</option>
+    </select>
+
+    <label>🧱 9. Доля ликвидных активов</label>
+    <select name="q9">
+        <option value="4">&gt; 50%</option>
+        <option value="3">30–50%</option>
+        <option value="2">10–30%</option>
+        <option value="1">&lt; 10%</option>
+    </select>
+
+    <label>🏥 10. Страховое покрытие</label>
+    <select name="q10">
+        <option value="4">Полное покрытие</option>
+        <option value="3">Частичное</option>
+        <option value="2">Минимальное</option>
+        <option value="1">Нет страховок</option>
+    </select>
+
+    <button type="button" onclick="calculateRisk()">Рассчитать результат</button>
+
+</form>
+</section>
+
+<div id="result"></div>
+
+<script>
+function calculateRisk() {
+    const form = document.getElementById('riskForm');
+    let total = 0;
+
+    for (let i = 1; i <= 10; i++) {
+        total += parseInt(form["q" + i].value);
+    }
+
+    let category = "";
+    let description = "";
+
+    if (total >= 32) {
+        category = "High Capacity";
+        description = "Высокая финансовая устойчивость. Можно выдерживать значительные просадки.";
+    } else if (total >= 24) {
+        category = "Moderate Capacity";
+        description = "Средняя устойчивость. Можно выдерживать умеренный риск, но есть ограничения.";
+    } else if (total >= 16) {
+        category = "Low Capacity";
+        description = "Низкая устойчивость. Риск ограничен: высокая нагрузка, низкая подушка.";
+    } else {
+        category = "Very Low Capacity";
+        description = "Очень низкая устойчивость. Любой значительный риск может привести к проблемам.";
+    }
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.style.display = "block";
+    resultDiv.innerHTML = `
+        <h2>Ваш результат: ${total} баллов</h2>
+        <h3>Категория: ${category}</h3>
+        <p>${description}</p>
+    `;
+}
+</script>
+
+</body>
+</html>
